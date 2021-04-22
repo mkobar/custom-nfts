@@ -8,11 +8,12 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 contract SimpleContract is ERC721URIStorage {
       constructor() ERC721("simple", "SC") {
     }
+    using Strings for uint256;
+
     using Counters for Counters.Counter;
         Counters.Counter private _tokenIds;
     uint[] public tokens;
 
-// ADD string memory metadata
     function mint(string memory metadata) public payable returns (uint256) { //address recipient
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
@@ -21,4 +22,5 @@ contract SimpleContract is ERC721URIStorage {
         tokens.push(newItemId);
         return newItemId;
     }
+
 }
